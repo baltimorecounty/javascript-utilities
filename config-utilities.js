@@ -42,7 +42,7 @@ const GetValue = (key) => {
 
 	const environmentValue = environmentConfig[key];
 
-	return environmentConfig && environmentValue
+	return environmentValue
 		? environmentValue
 		: console.error(`Unable to retrieve value. The ${environmentKey} config does not contain the key "${key}".`);
 };
