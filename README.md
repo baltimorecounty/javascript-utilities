@@ -6,7 +6,7 @@ A group of javascript utilities that have been found to be useful across differe
 
 The config utilities help us share configuration values based on the cms environment they are in. Our current cms makes it extremely difficult to manage our config values in our apps.
 
-### SetConfig
+### setConfig
 
 The constructor takes one parameter "values" which an object which contains configuration for the following environments: `local, development, staging, production`;
 
@@ -14,7 +14,7 @@ The constructor takes one parameter "values" which an object which contains conf
 **Usage**
 
 ```js
-import { SetConfig } from '@baltimorecounty/javascript-utilities';
+import { setConfig } from '@baltimorecounty/javascript-utilities';
 
 const configValues = {
 	local: {
@@ -35,12 +35,12 @@ const configValues = {
 	}
 };
 
-SetConfig(configValues); // Sets the config for use with either GetValue or Config
+setConfig(configValues); // Sets the config for use with either GetValue or Config
 ```
 
 *Note*: You will want to include this either at the beginning of your script inclusions or your app.js in a React app.
 
-### GetValue
+### getValue
 
 Takes a key of the configuration value you wish to return.
 
@@ -49,19 +49,19 @@ If the config hasn't been set, you are in an environment that doesn't exist, or 
 **Usage**
 
 ```js
-import { GetValue } from '@baltimorecounty/javascript-utilities';
-const apiRoot = GetValue('title'); // for local environments returns Local - My Awesome App
+import { getValue } from '@baltimorecounty/javascript-utilities';
+const apiRoot = getValue('title'); // for local environments returns Local - My Awesome App
 ```
 
-### Config
+### config
 
 Returns the entire config object
 
 **Usage**
 
 ```js
-import { Config } from '@baltimorecounty/javascript-utilities';
-const apiRoot = console.log(Config);
+import { config } from '@baltimorecounty/javascript-utilities';
+const apiRoot = console.log(config);
 // Logs
 {
 	local: {

@@ -1,4 +1,4 @@
-import { SetConfig, GetValue, Config } from './config-utilities';
+import { setConfig, getValue, config } from './config-utilities';
 
 const ValidConfig = {
 	local: {
@@ -16,25 +16,25 @@ const ValidConfig = {
 };
 
 beforeEach(() => {
-	SetConfig({}); // reset config
+	setConfig({}); // reset config
 });
 
 test('Initializes an instance of our config class', () => {
 	//Arrange
 	//Act
-	SetConfig(ValidConfig);
+	setConfig(ValidConfig);
 
 	//Assert
-	expect(Config).toEqual(ValidConfig);
+	expect(config).toEqual(ValidConfig);
 });
 
 test('Gets a value for localhost and valid key', () => {
 	//Arrange
-	SetConfig(ValidConfig);
+	setConfig(ValidConfig);
 	mockWindowLocation('http://localhost:1919');
 
 	//Act
-	const actualApiRoot = GetValue('apiRoot');
+	const actualApiRoot = getValue('apiRoot');
 
 	//Assert
 	expect(actualApiRoot).toEqual('//localhost/api');
@@ -42,11 +42,11 @@ test('Gets a value for localhost and valid key', () => {
 
 test('Gets a value for development and valid key', () => {
 	//Arrange
-	SetConfig(ValidConfig);
+	setConfig(ValidConfig);
 	mockWindowLocation('https://dev.aol.com');
 
 	//Act
-	const actualApiRoot = GetValue('apiRoot');
+	const actualApiRoot = getValue('apiRoot');
 
 	//Assert
 	expect(actualApiRoot).toEqual('//dev.aol.com/myApi');
@@ -54,12 +54,12 @@ test('Gets a value for development and valid key', () => {
 
 test('Logs an error when an invalid key is used', () => {
 	//Arrange
-	SetConfig(ValidConfig);
+	setConfig(ValidConfig);
 	global.console = { error: jest.fn() };
 	mockWindowLocation('https://localhost/api');
 
 	//Act
-	GetValue('askfdsljlfds');
+	getValue('askfdsljlfds');
 
 	//Assert
 	expect(console.error).toHaveBeenCalledWith(
@@ -73,11 +73,11 @@ test('Logs an error when no config is specified', () => {
 	mockWindowLocation('https://localhost/api');
 
 	//Act
-	GetValue('askfdsljlfds');
+	getValue('askfdsljlfds');
 
 	//Assert
 	expect(console.error).toHaveBeenCalledWith(
-		"It doesn't look like config has been specified, be sure to call SetConfig with your config values."
+		"It doesn't look like a config has been specified, be sure to call 'setConfig' with your config values."
 	);
 });
 

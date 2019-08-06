@@ -1,5 +1,4 @@
 let cachedConfig = {};
-
 const urlPartsRegex = /(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i;
 
 const getSubDomain = (url) => {
@@ -22,10 +21,10 @@ const getEnvironment = (hostname = '', subDomain = '') => {
 
 const hasConfig = () => Object.keys(cachedConfig).length > 0;
 
-const GetValue = (key) => {
+const getValue = (key) => {
 	if (!hasConfig()) {
 		console.error(
-			"It doesn't look like config has been specified, be sure to call SetConfig with your config values."
+			"It doesn't look like a config has been specified, be sure to call 'setConfig' with your config values."
 		);
 		return;
 	}
@@ -47,8 +46,8 @@ const GetValue = (key) => {
 		: console.error(`Unable to retrieve value. The ${environmentKey} config does not contain the key "${key}".`);
 };
 
-const SetConfig = (config) => {
+const setConfig = (config) => {
 	cachedConfig = config;
 };
 
-export { GetValue, SetConfig, cachedConfig as Config };
+export { getValue, setConfig, cachedConfig as config };
