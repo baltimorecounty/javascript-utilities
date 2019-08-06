@@ -1,4 +1,4 @@
-import { setConfig, getValue, config } from './config-utilities';
+import { setConfig, getValue, config } from './index';
 
 const ValidConfig = {
 	local: {

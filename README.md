@@ -6,6 +6,10 @@ A group of javascript utilities that have been found to be useful across differe
 
 The config utilities help us share configuration values based on the cms environment they are in. Our current cms makes it extremely difficult to manage our config values in our apps.
 
+```js
+import { setConfig, getValue, config } from '@baltimorecounty/javascript-utilities/config';
+```
+
 ### setConfig
 
 The constructor takes one parameter "values" which an object which contains configuration for the following environments: `local, development, staging, production`;
@@ -14,7 +18,7 @@ The constructor takes one parameter "values" which an object which contains conf
 **Usage**
 
 ```js
-import { setConfig } from '@baltimorecounty/javascript-utilities';
+import { setConfig } from '@baltimorecounty/javascript-utilities/config';
 
 const configValues = {
 	local: {
@@ -49,7 +53,7 @@ If the config hasn't been set, you are in an environment that doesn't exist, or 
 **Usage**
 
 ```js
-import { getValue } from '@baltimorecounty/javascript-utilities';
+import { getValue } from '@baltimorecounty/javascript-utilities/config';
 const apiRoot = getValue('title'); // for local environments returns Local - My Awesome App
 ```
 
@@ -60,7 +64,7 @@ Returns the entire config object
 **Usage**
 
 ```js
-import { config } from '@baltimorecounty/javascript-utilities';
+import { config } from '@baltimorecounty/javascript-utilities/config';
 const apiRoot = console.log(config);
 // Logs
 {
