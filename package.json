@@ -1,0 +1,20 @@
+{
+	"name": "utilities",
+	"version": "1.0.0",
+	"description": "Utilities to use in Baltimore County development projects.",
+	"main": "utilities.js",
+	"scripts": {
+		"test": "jest --watchAll"
+	},
+	"jest": {
+		"verbose": true
+	},
+	"author": "Baltimore County Developers",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@babel/preset-env": "^7.5.5",
+		"babel-jest": "^24.8.0",
+		"jest": "^24.8.0"
+	}
+}
