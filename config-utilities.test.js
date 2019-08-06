@@ -31,7 +31,7 @@ test('Initializes an instance of our config class', () => {
 test('Gets a value for localhost and valid key', () => {
 	//Arrange
 	SetConfig(ValidConfig);
-	mockWindowLocation('http://localhost:1919', 'localhost:1919');
+	mockWindowLocation('http://localhost:1919');
 
 	//Act
 	const actualApiRoot = GetValue('apiRoot');
