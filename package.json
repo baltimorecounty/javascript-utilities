@@ -1,7 +1,7 @@
 {
 	"name": "@baltimorecounty/javascript-utilities",
 	"version": "1.0.0",
-	"description": "Utilities to use in Baltimore County development projects.",
+	"description": "JavaScript utilities.",
 	"main": "index.js",
 	"author": "Baltimore County Developers",
 	"repository": {
