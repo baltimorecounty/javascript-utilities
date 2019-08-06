@@ -1,6 +1,6 @@
 {
 	"name": "@baltimorecounty/javascript-utilities",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "JavaScript utilities.",
 	"main": "index.js",
 	"author": "Baltimore County Developers",
