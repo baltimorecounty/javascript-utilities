@@ -1,3 +1,5 @@
+let cachedConfig = {};
+
 const urlPartsRegex = /(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i;
 
 const getSubDomain = (url) => {
@@ -18,29 +20,26 @@ const getEnvironment = (hostname = '', subDomain = '') => {
 	return 'local';
 };
 
-class Config {
-	constructor(values) {
-		this.values = values;
+const GetValue = (key) => {
+	const { href = '', hostname = '' } = window.location;
+	const subDomain = getSubDomain(href);
+	const environmentKey = getEnvironment(hostname, subDomain);
+	const environmentConfig = cachedConfig.hasOwnProperty(environmentKey) ? cachedConfig[environmentKey] : null;
+
+	if (!environmentConfig) {
+		console.error(`Unable to retrieve value. The "${environmentKey}" config does not exist.`);
+		return;
 	}
 
-	GetValue(key) {
-		const { href = '', hostname = '' } = window.location;
-		const subDomain = getSubDomain(href);
-		const environmentKey = getEnvironment(hostname, subDomain);
-		const environmentConfig = this.values.hasOwnProperty(environmentKey) ? this.values[environmentKey] : null;
+	const environmentValue = environmentConfig[key];
 
-		if (!environmentConfig) {
-			console.error(`Unable to retrieve value. The "${environmentKey}" config does not exist.`);
-		}
+	return environmentConfig && environmentValue
+		? environmentValue
+		: console.error(`Unable to retrieve value. The ${environmentKey} config does not contain the key "${key}".`);
+};
 
-		const environmentValue = environmentConfig[key];
+const SetConfig = (config) => {
+	cachedConfig = config;
+};
 
-		return environmentConfig && environmentValue
-			? environmentValue
-			: console.error(
-					`Unable to retrieve value. The ${environmentKey} config does not contain the key "${key}".`
-				);
-	}
-}
-
-export { Config };
+export { GetValue, SetConfig, cachedConfig as Config };

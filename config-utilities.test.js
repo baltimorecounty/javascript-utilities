@@ -1,4 +1,4 @@
-import { Config } from './config-utilities';
+import { SetConfig, GetValue, Config } from './config-utilities';
 
 const ValidConfig = {
 	local: {
@@ -18,19 +18,19 @@ const ValidConfig = {
 test('Initializes an instance of our config class', () => {
 	//Arrange
 	//Act
-	const config = new Config(ValidConfig);
+	SetConfig(ValidConfig);
 
 	//Assert
-	expect(config.values).toEqual(ValidConfig);
+	expect(Config).toEqual(ValidConfig);
 });
 
 test('Gets a value for localhost and valid key', () => {
 	//Arrange
-	const config = new Config(ValidConfig);
+	SetConfig(ValidConfig);
 	mockWindowLocation('http://localhost:1919', 'localhost:1919');
 
 	//Act
-	const actualApiRoot = config.GetValue('apiRoot');
+	const actualApiRoot = GetValue('apiRoot');
 
 	//Assert
 	expect(actualApiRoot).toEqual('//localhost/api');
@@ -38,11 +38,11 @@ test('Gets a value for localhost and valid key', () => {
 
 test('Gets a value for development and valid key', () => {
 	//Arrange
-	const config = new Config(ValidConfig);
+	SetConfig(ValidConfig);
 	mockWindowLocation('https://dev.aol.com');
 
 	//Act
-	const actualApiRoot = config.GetValue('apiRoot');
+	const actualApiRoot = GetValue('apiRoot');
 
 	//Assert
 	expect(actualApiRoot).toEqual('//dev.aol.com/myApi');
@@ -50,12 +50,12 @@ test('Gets a value for development and valid key', () => {
 
 test('Logs an error when an invalid key is used', () => {
 	//Arrange
-	const config = new Config(ValidConfig);
+	SetConfig(ValidConfig);
 	global.console = { error: jest.fn() };
 	mockWindowLocation('https://localhost/api');
 
 	//Act
-	config.GetValue('askfdsljlfds');
+	GetValue('askfdsljlfds');
 
 	//Assert
 	expect(console.error).toHaveBeenCalledWith(
