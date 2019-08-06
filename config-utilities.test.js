@@ -15,6 +15,10 @@ const ValidConfig = {
 	}
 };
 
+beforeEach(() => {
+	SetConfig({}); // reset config
+});
+
 test('Initializes an instance of our config class', () => {
 	//Arrange
 	//Act
@@ -60,6 +64,20 @@ test('Logs an error when an invalid key is used', () => {
 	//Assert
 	expect(console.error).toHaveBeenCalledWith(
 		'Unable to retrieve value. The local config does not contain the key "askfdsljlfds".'
+	);
+});
+
+test('Logs an error when no config is specified', () => {
+	//Arrange
+	global.console = { error: jest.fn() };
+	mockWindowLocation('https://localhost/api');
+
+	//Act
+	GetValue('askfdsljlfds');
+
+	//Assert
+	expect(console.error).toHaveBeenCalledWith(
+		"It doesn't look like config has been specified, be sure to call SetConfig with your config values."
 	);
 });
 

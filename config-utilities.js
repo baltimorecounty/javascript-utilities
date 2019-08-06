@@ -20,7 +20,16 @@ const getEnvironment = (hostname = '', subDomain = '') => {
 	return 'local';
 };
 
+const hasConfig = () => Object.keys(cachedConfig).length > 0;
+
 const GetValue = (key) => {
+	if (!hasConfig()) {
+		console.error(
+			"It doesn't look like config has been specified, be sure to call SetConfig with your config values."
+		);
+		return;
+	}
+
 	const { href = '', hostname = '' } = window.location;
 	const subDomain = getSubDomain(href);
 	const environmentKey = getEnvironment(hostname, subDomain);
