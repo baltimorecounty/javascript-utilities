@@ -18,16 +18,20 @@ import { SetConfig } from '@baltimorecounty/javascript-utilities';
 
 const configValues = {
 	local: {
-		apiRoot: 'http://localhost:1919/api'
+		apiRoot: 'http://localhost:1919/api',
+		title: 'Local - My Awesome App'
 	},
 	development: {
-		apiRoot: 'http://testservices.baltimorecountymd.gov/api'
+		apiRoot: 'http://testservices.baltimorecountymd.gov/api',
+		title: 'Development - My Awesome App'
 	},
 	staging: {
-		apiRoot: 'http://stagingservices.baltimorecountymd.gov/api'
+		apiRoot: 'http://stagingservices.baltimorecountymd.gov/api',
+		title: 'Staging - My Awesome App'
 	},
 	production: {
-		apiRoot: 'http://services.baltimorecountymd.gov/api'
+		apiRoot: 'http://services.baltimorecountymd.gov/api',
+		title: 'My Awesome App'
 	}
 };
 
@@ -46,7 +50,7 @@ If the config hasn't been set, you are in an environment that doesn't exist, or 
 
 ```js
 import { GetValue } from '@baltimorecounty/javascript-utilities';
-const apiRoot = GetValue('apiRoot'); // for local environments returns http://localhost:1919/api
+const apiRoot = GetValue('title'); // for local environments returns Local - My Awesome App
 ```
 
 ### Config
@@ -61,16 +65,20 @@ const apiRoot = console.log(Config);
 // Logs
 {
 	local: {
-		apiRoot: 'http://localhost:1919/api'
+		apiRoot: 'http://localhost:1919/api',
+		title: 'Local - My Awesome App'
 	},
 	development: {
-		apiRoot: 'http://testservices.baltimorecountymd.gov/api'
+		apiRoot: 'http://testservices.baltimorecountymd.gov/api',
+		title: 'Development - My Awesome App'
 	},
 	staging: {
-		apiRoot: 'http://stagingservices.baltimorecountymd.gov/api'
+		apiRoot: 'http://stagingservices.baltimorecountymd.gov/api',
+		title: 'Staging - My Awesome App'
 	},
 	production: {
-		apiRoot: 'http://services.baltimorecountymd.gov/api'
+		apiRoot: 'http://services.baltimorecountymd.gov/api',
+		title: 'My Awesome App'
 	}
 }
 ```
