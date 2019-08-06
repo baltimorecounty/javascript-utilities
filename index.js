@@ -1,3 +1,1 @@
-import { Config } from './config-utilities';
-
-export { Config };
+// Exports config at /config

@@ -1,4 +1,4 @@
-import { Config } from './config-utilities';
+import { setConfig, getValue, config } from './index';
 
 const ValidConfig = {
 	local: {
@@ -15,22 +15,26 @@ const ValidConfig = {
 	}
 };
 
+beforeEach(() => {
+	setConfig({}); // reset config
+});
+
 test('Initializes an instance of our config class', () => {
 	//Arrange
 	//Act
-	const config = new Config(ValidConfig);
+	setConfig(ValidConfig);
 
 	//Assert
-	expect(config.values).toEqual(ValidConfig);
+	expect(config).toEqual(ValidConfig);
 });
 
 test('Gets a value for localhost and valid key', () => {
 	//Arrange
-	const config = new Config(ValidConfig);
-	mockWindowLocation('http://localhost:1919', 'localhost:1919');
+	setConfig(ValidConfig);
+	mockWindowLocation('http://localhost:1919');
 
 	//Act
-	const actualApiRoot = config.GetValue('apiRoot');
+	const actualApiRoot = getValue('apiRoot');
 
 	//Assert
 	expect(actualApiRoot).toEqual('//localhost/api');
@@ -38,11 +42,11 @@ test('Gets a value for localhost and valid key', () => {
 
 test('Gets a value for development and valid key', () => {
 	//Arrange
-	const config = new Config(ValidConfig);
+	setConfig(ValidConfig);
 	mockWindowLocation('https://dev.aol.com');
 
 	//Act
-	const actualApiRoot = config.GetValue('apiRoot');
+	const actualApiRoot = getValue('apiRoot');
 
 	//Assert
 	expect(actualApiRoot).toEqual('//dev.aol.com/myApi');
@@ -50,16 +54,30 @@ test('Gets a value for development and valid key', () => {
 
 test('Logs an error when an invalid key is used', () => {
 	//Arrange
-	const config = new Config(ValidConfig);
+	setConfig(ValidConfig);
 	global.console = { error: jest.fn() };
 	mockWindowLocation('https://localhost/api');
 
 	//Act
-	config.GetValue('askfdsljlfds');
+	getValue('askfdsljlfds');
 
 	//Assert
 	expect(console.error).toHaveBeenCalledWith(
 		'Unable to retrieve value. The local config does not contain the key "askfdsljlfds".'
+	);
+});
+
+test('Logs an error when no config is specified', () => {
+	//Arrange
+	global.console = { error: jest.fn() };
+	mockWindowLocation('https://localhost/api');
+
+	//Act
+	getValue('askfdsljlfds');
+
+	//Assert
+	expect(console.error).toHaveBeenCalledWith(
+		"It doesn't look like a config has been specified, be sure to call 'setConfig' with your config values."
 	);
 });
 
