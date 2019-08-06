@@ -1,15 +1,25 @@
 {
-	"name": "utilities",
+	"name": "@baltimorecounty/javascript-utilities",
 	"version": "1.0.0",
 	"description": "Utilities to use in Baltimore County development projects.",
-	"main": "utilities.js",
+	"main": "index.js",
+	"author": "Baltimore County Developers",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/baltimorecounty/javascript-utilities.git"
+	},
+	"bugs": {
+		"url": "https://github.com/baltimorecounty/javascript-utilities/issues"
+	},
+	"homepage": "https://github.com/baltimorecounty/javascript-utilities",
 	"scripts": {
-		"test": "jest --watchAll"
+		"test": "jest",
+		"watch-tests": "jest --watchAll",
+		"publish": "npm publish --access public"
 	},
 	"jest": {
 		"verbose": true
 	},
-	"author": "Baltimore County Developers",
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
