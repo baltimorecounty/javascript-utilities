@@ -15,7 +15,7 @@
   "scripts": {
     "test": "jest",
     "watch-tests": "jest --watchAll",
-    "prepublishOnly": "node_modules/babel-cli/bin/babel.js src --out-dir lib --ignore '**/*.test.js'",
+    "prepublishOnly": "babel src --out-dir lib --ignore '**/*.test.js'",
     "publish": "npm publish --access public"
   },
   "babel": {
