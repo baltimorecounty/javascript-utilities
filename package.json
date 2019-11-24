@@ -1,6 +1,6 @@
 {
   "name": "@baltimorecounty/javascript-utilities",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "JavaScript utilities.",
   "main": "lib/index.js",
   "author": "Baltimore County Developers",
@@ -15,13 +15,7 @@
   "scripts": {
     "test": "jest",
     "watch-tests": "jest --watchAll",
-    "prepublishOnly": "babel src --out-dir lib --ignore '**/*.test.js'",
-    "publish": "npm publish --access public"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "prepublishOnly": "babel src --out-dir lib --ignore '**/*.test.js' --presets=es2015"
   },
   "jest": {
     "verbose": true
