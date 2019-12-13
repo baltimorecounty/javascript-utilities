@@ -62,7 +62,7 @@ _Note_: You will want to include this either at the beginning of your script inc
 
 This function takes a parameter of the key of the configuration value you wish to return, _e.g._ `"title"`.
 
-You will get a console.error describing what went wrong if the config hasn't been set, you are in an environment that doesn't exist, or you pass in a key that doesn't exist.
+You will get an error in the console describing what went wrong if the config hasn't been set, you are in an environment that doesn't exist, or you pass in a key that doesn't exist.
 
 **Usage**
 
