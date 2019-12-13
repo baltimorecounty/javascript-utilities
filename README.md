@@ -21,6 +21,13 @@ import {
 
 The constructor takes one parameter, "values", which is an object which contains configuration for the following environments: `local, development, staging, production`;
 
+This utility will determine which environment is being used based on the contents of the browser URL per the following:
+
+- **local** - any url that contains `localhost`
+- **development** - any url with `dev` subdomain - _Example_: dev.baltimorecountymd.gov
+- **staging** - any url with `staging` subdomain - _Example_: staging.baltimorecountymd.gov
+- **production** - any url with `www.` or no subdomain but not localhost - _Example_: www.baltimorecountymd.gov
+
 **Usage**
 
 ```js
@@ -95,12 +102,3 @@ const apiRoot = console.log(config);
 	}
 }
 ```
-
-### Environments
-
-This utility will determine which environment is being used based on the contents of the browser URL per the following:
-
-- **local** - any url that contains `localhost`
-- **development** - any url with `dev` subdomain - _Example_: dev.baltimorecountymd.gov
-- **staging** - any url with `staging` subdomain - _Example_: staging.baltimorecountymd.gov
-- **production** - any url with `www.` or no subdomain but not localhost - _Example_: www.baltimorecountymd.gov
