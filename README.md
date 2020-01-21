@@ -121,5 +121,5 @@ To get Bob's age you would do the following
 import { Urls } from "@baltimorecounty/javascript-utilities";
 const { GetParameterByName } = Urls;
 
-const bobsAge = GetParameterByName("age");
+const bobsAge = GetParameterByName("age"); // returns "20"
 ```
