@@ -102,3 +102,24 @@ const apiRoot = console.log(config);
 	}
 }
 ```
+
+## Url Utilities
+
+The config utilities help us deal with the url when we need to
+
+### GetParameterByName
+
+This function takes a parameter of the query parameter name of the configuration value you wish to return, _e.g._ `"name"`. This function uses the current url, specifically the [location.search](https://developer.mozilla.org/en-US/docs/Web/API/Window/location#Example_5_Send_a_string_of_data_to_the_server_by_modifying_the_search_property) property to work it's magic.
+
+**Usage**
+
+Example Url: http://abc.com?name=bob&age=20
+
+To get Bob's age you would do the following
+
+```js
+import { Urls } from "@baltimorecounty/javascript-utilities";
+const { GetParameterByName } = Urls;
+
+const bobsAge = GetParameterByName("age"); // returns "20"
+```
