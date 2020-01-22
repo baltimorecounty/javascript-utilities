@@ -11,4 +11,4 @@ const GetParameterByName = parameterName => {
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 };
 
-export default GetParameterByName;
+export { GetParameterByName };
